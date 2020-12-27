@@ -44,7 +44,7 @@ class BukiTeacher:
         else:
             rating = reviews = None
 
-        return BukiTeacher(
+        return cls(
             name=name_element.text,
             education=education.span.text if education else None,
             experience=element.select_one(".practices").text.split(": ")[-1],
@@ -57,7 +57,7 @@ class BukiTeacher:
         )
 
 
-def scrape_data(city: str = City.kp):
+def scrape_data(city: str = City.kp) -> List[dict]:
     page_url = f"https://buki.com.ua/tutors/{city}" + "/{}"
     print(f"Start Buki parser for: {city}")
 
